@@ -1,5 +1,7 @@
+import { Router, NavigationEnd } from '@angular/router';
 import { element } from 'protractor';
 import { Component, ViewChild, Renderer2, OnInit, AfterViewInit } from '@angular/core';
+declare var ga: Function;
 
 @Component({
   selector: 'app-root',
@@ -10,7 +12,13 @@ export class AppComponent implements OnInit, AfterViewInit {
   title = 'app';
   @ViewChild('buttons') button;
   open = false;
-  constructor(private renderer: Renderer2) {
+  constructor(private renderer: Renderer2, public router: Router) {
+    this.router.events.subscribe(event => {
+      if (event instanceof NavigationEnd) {
+        ga('set', 'page', event.urlAfterRedirects);
+        ga('send', 'pageview');
+      }
+    });
   }
 
   ngOnInit() {

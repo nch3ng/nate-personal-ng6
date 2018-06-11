@@ -46,6 +46,7 @@
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.6.0",
     "@angular/language-service": "^6.0.0",
+    "@types/google.analytics": "0.0.39",
     "@types/jasmine": "~2.8.6",
     "@types/jasminewd2": "~2.0.3",
     "@types/node": "~8.9.4",
