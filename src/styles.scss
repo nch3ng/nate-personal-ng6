@@ -1,1 +1,354 @@
 /* You can add global styles to this file, and also import other style files */
+
+@import 'assets/scss/color-schema.scss';
+
+*, *:before, *:after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  height: 100%;
+  font-family: $font-base;
+  // display: flex;
+  // flex-direction: column;
+  // align-items: center;
+  // justify-content: center;   
+  height: 100%;
+  // background-color: $color2;
+  -webkit-font-smoothing: antialiased;
+  font-size: 18px;
+}
+
+
+
+body {
+  &:before {
+    height: 20%;
+  }
+
+  &:before,
+  &:after {
+    content: "";
+    display: block;
+    background: $lightBlue;
+  }
+
+  &:after {
+    background: darken($mainColor, 60%);
+    height: 80%;
+  }
+}
+
+.content {
+  font-family: $font-base;
+  width: 100%;
+  font-weight: 100;
+  text-align: center;
+  font-size: 42px;
+  color: #fff;
+  position: absolute;
+  top: 50%;
+}
+
+
+/* MAIN VARIABLES FOR CUSTOMIZATION */
+$numOfItems: 5;
+$navAT: 1s;
+$textDelayStep: 0.1s;
+
+
+
+/* -------------------------------- */
+
+$font: Helvetica, Arial, sans-serif;
+
+$btnSize: 90px;
+$lineW: 28px;
+$lineH: 4px;
+$linesGap: 10px;
+$linesTotalH: $lineH*2 + $linesGap;
+$btnHorPad: ($btnSize - $lineW) / 2;
+$btnVertPad: ($btnSize - $linesTotalH) / 2;
+
+
+$itemsLeftPad: 20px;
+$itemsRightPad: $itemsLeftPad + $btnSize;
+$itemWidth: 70px;
+$navItemsWidth: $itemsLeftPad + $itemsRightPad + $itemWidth * $numOfItems;
+$textAT: $navAT - $textDelayStep * ($numOfItems - 1);
+
+$textFadeAT: 0.2s;
+$cub: cubic-bezier(.48,.43,.29,1.3);
+$backCub: cubic-bezier(0.49,-0.3,.68,1.23);
+$textCub: cubic-bezier(.48,.43,.7,2.5);
+
+.nav {
+  overflow: hidden;
+  position: absolute;
+  left: 50%;
+  top: 20%;
+  width: auto;
+  height: $btnSize;
+  margin-top: $btnSize/-2;
+  background: #fff;
+  border-radius: 5px;
+  transform: translate3d(-50%,0,0);
+  box-shadow: 0 10px 35px rgba(0,0,0,0.2);
+
+  &__cb {
+    z-index: -1000;
+    position: absolute;
+    left: 0;
+    top: 0;
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  &__content {
+    position: relative;
+    width: $btnSize;
+    height: 100%;
+    transition: width $navAT $backCub;
+
+    .nav__cb:checked ~ & {
+      transition: width $navAT $cub;
+      width: $navItemsWidth;
+    }
+  }
+
+  &__items {
+    position: relative;
+    width: $navItemsWidth;
+    height: 100%;
+    padding-left: $itemsLeftPad;
+    padding-right: $itemsRightPad;
+    list-style-type: none;
+    font-size: 0;
+  }
+
+  &__item {
+    display: inline-block;
+    vertical-align: top;
+    width: $itemWidth;
+    text-align: center;
+    color: #6C7784;
+    font-size: 14px;
+    line-height: $btnSize;
+    font-family: $font;
+    font-weight: 100;
+    perspective: 1000px;
+    transition: color 0.3s;
+    cursor: pointer;
+
+    &:hover {
+      color: $mainColor;
+    }
+
+    a, a.focus {
+      text-decoration: none;
+      outline: none;
+    }
+
+    a, a:link, a:visited {
+      color: #6C7784;
+    }
+    a:hover {
+      color: $mainColor;
+    }
+
+    &-text {
+      display: block;
+      height: 100%;
+      transform: rotateY(-70deg);
+      opacity: 0;
+      transition: transform $textAT $textCub, opacity $textAT;
+
+      .nav__cb:checked ~ .nav__content & {
+        transform: rotateY(0);
+        opacity: 1;
+        transition: transform $textAT $textCub, opacity $textFadeAT;
+      }
+
+      @for $i from 1 through $numOfItems {
+        .nav__item:nth-child(#{$i}) & {
+          transition-delay: ($numOfItems - $i) * $textDelayStep;
+        }
+
+        .nav__cb:checked ~ .nav__content .nav__item:nth-child(#{$i}) & {
+          transition-delay: ($i - 1) * $textDelayStep;
+        }
+      }
+    }
+  }
+
+  &__btn {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: $btnSize;
+    height: $btnSize;
+    padding: $btnVertPad $btnHorPad;
+    cursor: pointer;
+
+    &:before,
+    &:after {
+      content: "";
+      display: block;
+      width: $lineW;
+      height: $lineH;
+      border-radius: 2px;
+      background:  $mainColor;
+      transform-origin: 50% 50%;
+      transition: transform $navAT $cub, background-color 0.3s;
+    }
+
+    &:before {
+      margin-bottom: $linesGap;
+    }
+
+    &:hover {
+      &:before,
+      &:after {
+        background:$mainColor;
+      }
+    }
+
+    .nav__cb:checked ~ & {
+
+      &:before {
+        transform: translateY($linesGap/2 + $lineH/2) rotate(-225deg);
+      }
+
+      &:after {
+        transform: translateY($linesGap/-2 + $lineH/-2) rotate(225deg);
+      }
+    }
+  }
+}
+
+.typed-cursor {
+  opacity: 1;
+  -webkit-animation: blink 1s infinite;
+  -moz-animation: blink 1s infinite;
+  animation: blink 1s infinite;
+}
+
+@keyframes blink{
+  0% { opacity:1; }
+  50% { opacity:0; }
+  100% { opacity:1; }
+}
+
+@-webkit-keyframes blink {
+  0% { opacity:1; }
+  50% { opacity:0; }
+  100% { opacity:1; }
+}
+
+@-moz-keyframes blink {
+  0% { opacity:1; }
+  50% { opacity:0; }
+  100% { opacity:1; }
+}
+
+// For Contact Page
+
+$color1: #EE283E;
+$color2: #1F3944;
+$color3: white;
+.icon {
+	display: inline-block;
+	width: 1em;
+	height: 1em;
+	fill: currentColor;
+}
+
+.icon-paperplane {
+    font-size: 1em;
+    color: $color3;
+    margin-left: 1px;
+    margin-top: 5px;
+}
+
+.contact-button {
+  position: relative;
+  -webkit-perspective: 1000;
+  -webkit-backface-visibility: hidden;
+  -webkit-transform:translate3d(0,0,0);
+  color: $color3;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-family: 'Raleway', sans-serif;
+  font-weight: 700;
+  font-size: 0.6em;
+  border: 2px solid $color3;
+  border-radius: 4px;
+  padding: 20px 60px 20px 55px;
+  transition: 0.3s ease-in-out;
+    
+  span {
+      text-transform: none;
+      position: absolute;
+      color: darken($mainColor,20%);
+      top: 20px;
+      left: 30px;
+      opacity: 0;
+      transition: all 0s ease 0s;
+  }
+  &:hover {
+      transition: 0.3s ease-in-out;
+      border: 2px solid $color3;
+      border-radius: 50px;
+      background-color: $color3;
+      
+      &>span {
+          opacity: 1;
+          transition: all 0.25s ease-in-out 0.1s;
+          font-size: 0.9em;
+      }
+      
+      &:before {
+          transition: 0.3s ease-in-out;
+          background-color: darken($mainColor, 20%);
+      }
+  }
+  
+  
+  &:before, &:after {
+      content: "";
+      position: absolute;
+      top: -14px;
+      left: -12px;
+      width: 132px;
+      height: 25px;
+  }
+  &:before {
+      border: 2px solid darken($mainColor, 20%);
+      background-color: darken($mainColor, 60%);;
+      transform: skew(-25deg);
+      transition: 0.3s ease-in-out;
+  }
+  
+  &:after {
+      content: "Available for work";
+      font-size: 0.4em;
+      top: -7px;
+      color: $color3;
+  }
+}
+
+.inspiration {
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+    left: 0;
+    padding: 10px;
+    text-align: center;
+    text-decoration: none;
+    color: lighten($color2, 25%);
+    font-family: 'Raleway', sans-serif;
+    font-weight: 700;
+    font-size: 1em;
+}

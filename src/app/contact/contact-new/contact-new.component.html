@@ -1,0 +1,9 @@
+<div class="content contact">
+  <form (ngSubmit)="onSubmit(f);" #f="ngForm">      
+    <input name="name" type="text" class="feedback-input" [(ngModel)]="message.name" placeholder="Name" />   
+    <input name="email" type="text" class="feedback-input" [(ngModel)]="message.email" placeholder="Email" />
+    <textarea name="text" class="feedback-input" [(ngModel)]="message.message" placeholder="What you wanna tell me ..."></textarea>
+    <button type="submit" style="width: 40%">SUBMIT</button>
+    <button type="button" style="width: 40%">BACK</button>
+  </form>
+</div>

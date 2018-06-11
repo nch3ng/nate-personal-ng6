@@ -1,0 +1,32 @@
+svg {
+  position: absolute;
+}
+
+.myname {
+  font-family: 'Lobster', sans-serif;
+  letter-spacing: 5px;
+  color: #6ae7dd;
+  font-size: 48px;
+}
+
+
+.about-me {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  font-size: 14px;
+  color: white;  
+  font-family: sans-serif;
+  
+  & a {
+    color: white;
+    
+    &:hover {
+      color: lighten(blue, 20%);
+    }
+  }
+}
+
+.typed-element i {
+  color: #f4eb42 !important;
+}

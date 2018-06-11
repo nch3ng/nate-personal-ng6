@@ -1,0 +1,170 @@
+$font-base:  "Montserrat", sans-serif;
+$font-about:  "Droid Serif", sans-serif;
+
+.content {
+  font-family: $font-base;
+  width: 100%;
+  font-weight: 100;
+  text-align: center;
+  font-size: 42px;
+  color: #fff;
+  position: absolute;
+  top: 50%;
+}
+
+header {
+  flex-direction: column;
+  justify-content: center;
+  display: flex;
+  position: fixed;
+  top: 0;
+  height: 20%;
+  line-height: 9;
+}
+
+header .logo {
+  position: absolute;
+  top: 20%;
+  margin-left: 80px;
+}
+header .logo img {
+  height: 100px;
+}
+
+svg {
+  position: absolute;
+}
+
+.social-buttons {
+  width: 100vw;
+  height: 100vh;  
+  
+  background-color: darken(#84b4b1, 10%);
+  
+  &__buttons {
+    position: absolute;
+    top: 40%;
+    left: 10%;
+    width: 200px;
+    height: 200px;
+    
+    transform: translate(-100px, -100px);
+    filter: url("#goo");
+    
+    &.step-0 {
+      .social-buttons__social-btn-1, .social-buttons__social-btn-2, .social-buttons__social-btn-3, .social-buttons__social-btn-4 {
+        transform: translate3d(-50px, -50px, 0);
+      }
+    }
+    &.step-1 {
+      .social-buttons__social-btn-1 {
+        transform: translate3d(-50px, -50px, 0);
+      }
+      .social-buttons__social-btn-2, .social-buttons__social-btn-3, .social-buttons__social-btn-4 {
+        transform: translate3d(-50px, 50px, 0);
+      }
+    }
+    &.step-2 {      
+      .social-buttons__social-btn-1 {
+        transform: translate3d(-50px, -50px, 0);
+      }
+      
+      .social-buttons__social-btn-2 {
+        transform: translate3d(-50px, 50px, 0);
+      }
+      
+      .social-buttons__social-btn-3, .social-buttons__social-btn-4 {
+        transform: translate3d(50px, 50px, 0);
+      }
+    }
+    &.step-3 {
+      .social-buttons__social-btn-1 {
+        transform: translate3d(-50px, -50px, 0);
+      }      
+      .social-buttons__social-btn-2 {
+        transform: translate3d(-50px, 50px, 0);
+      }
+      
+      .social-buttons__social-btn-3 {
+        transform: translate3d(50px, 50px, 0);
+      }
+      .social-buttons__social-btn-4 {
+        transform: translate3d(50px, -50px, 0);
+      }
+    }
+  }
+  
+  &__social-btn {
+    position: absolute;    
+    left: 65px;
+    top: 65px;
+    
+    width: 70px;
+    height: 70px;
+    
+    text-align: center;
+    line-height: 70px;
+    font-size: 30px;
+    
+    background: white;
+    color: #261758;
+    
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    a, a:link {
+      text-decoration: none;
+      color: #555;
+    }
+
+    a:hover {
+      color: #6ae7dd;
+    }
+
+    a:hover .fa-linkedin-square {
+      color: #4875B4;
+    }
+
+    a:hover .fa-facebook-square {
+      color: #3B5998;
+    }
+
+    a:hover .fa-codepen {
+      color: #111;
+    }
+
+    a:hover .fa-github {
+      color: #6e5494;
+    }
+
+    &:hover {
+      color: #6ae7dd;
+    }
+  }
+  
+  &__open-btn {
+    position: absolute;
+    left: 65px;
+    top: 65px;
+    width: 70px;
+    height: 70px;
+    
+    text-align: center;
+    line-height: 70px;
+    font-weight: 700;
+    font-size: 30px;
+    font-family: sans-serif;
+    
+    background: white;
+    color: #261758;
+    
+    border-radius: 50%;
+    cursor: pointer;
+    
+    transition: all 0.2s ease;
+    
+    &:hover {
+      color: #6ae7dd;
+    }
+  }
+}
