@@ -1,3 +1,4 @@
+@import '../../assets/scss/color-schema.scss';
 svg {
   position: absolute;
 }
@@ -29,4 +30,18 @@ svg {
 
 .typed-element i {
   color: #f4eb42 !important;
+}
+
+.statement {
+  font-size: .5em;
+  color: #fff;
+  position: fixed;
+  right: 20px;
+  bottom: 10px;
+}
+
+.statement > a, .statement > a:hover, .statement > a:link, .statement > a:visited {
+  text-decoration: none;
+  font-weight: 700;
+  color: darken($mainColor, 20%);
 }
