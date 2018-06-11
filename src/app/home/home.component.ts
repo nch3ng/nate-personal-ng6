@@ -27,7 +27,7 @@ export class HomeComponent implements OnInit, AfterViewInit  {
 
     const second_options = {
       strings: [
-        'left buttons^1000 to know more about me^500 and my work.^500',
+        'left buttons^1000 to check my social profile^500 and my work.^500',
         'and menu above to see my solutions^1000 for Leetcode problems^1000',
         'articles^1000, and contact information.^1000'],
       typeSpeed: 50,
