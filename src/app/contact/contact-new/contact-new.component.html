@@ -4,6 +4,6 @@
     <input name="email" type="text" class="feedback-input" [(ngModel)]="message.email" placeholder="Email" />
     <textarea name="text" class="feedback-input" [(ngModel)]="message.message" placeholder="What you wanna tell me ..."></textarea>
     <button type="submit" style="width: 40%">SUBMIT</button>
-    <button type="button" style="width: 40%">BACK</button>
+    <button type="button" style="width: 40%" [routerLink]="['/contact']">BACK</button>
   </form>
 </div>

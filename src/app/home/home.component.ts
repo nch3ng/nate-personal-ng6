@@ -16,7 +16,7 @@ export class HomeComponent implements OnInit, AfterViewInit  {
   ngAfterViewInit() {
 
     const first_options = {
-      strings: ['am a <i>Full Stack Developer</i>.^1000', 'love <i>Typescript^1000, Angular^1000, and Nodejs.^1000</i>'],
+      strings: ['am a <i>Full Stack Developer</i>.^1000', 'love <i>Typescript^1000, Angular^1000, and Nodejs</i>.^1000'],
       typeSpeed: 50,
       loop: true,
       onLastStringBackspaced: () => {
