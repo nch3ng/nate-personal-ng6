@@ -1,6 +1,9 @@
 {
   "name": "nate-personal-ng6",
   "version": "0.0.0",
+  "engines": {
+    "node": "9.7.1"
+  },
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
