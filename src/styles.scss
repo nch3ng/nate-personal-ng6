@@ -75,7 +75,7 @@ $btnVertPad: ($btnSize - $linesTotalH) / 2;
 
 $itemsLeftPad: 20px;
 $itemsRightPad: $itemsLeftPad + $btnSize;
-$itemWidth: 70px;
+$itemWidth: 80px;
 $navItemsWidth: $itemsLeftPad + $itemsRightPad + $itemWidth * $numOfItems;
 $textAT: $navAT - $textDelayStep * ($numOfItems - 1);
 
@@ -134,7 +134,7 @@ $textCub: cubic-bezier(.48,.43,.7,2.5);
     width: $itemWidth;
     text-align: center;
     color: #6C7784;
-    font-size: 14px;
+    font-size: 18px;
     line-height: $btnSize;
     font-family: $font;
     font-weight: 100;
