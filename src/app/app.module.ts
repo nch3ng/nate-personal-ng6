@@ -18,11 +18,11 @@ import { ContactNewComponent } from './contact/contact-new/contact-new.component
     ContactNewComponent
   ],
   imports: [
-    BrowserModule,
     AppRoutingModule,
     SweetAlert2Module.forRoot(),
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    BrowserModule.withServerTransition({appId: 'natePersonal'})
   ],
   providers: [],
   bootstrap: [AppComponent]

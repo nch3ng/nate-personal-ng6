@@ -3,8 +3,12 @@ import * as bodyParser from 'body-parser';
 import logger = require('./helpers/logger');
 import * as path from 'path';
 import * as cookieParser from 'cookie-parser';
-
 import * as EmailValidator from 'email-validator';
+import * as fs from 'fs';
+// import { renderModuleFactory } from '@angular/platform-server';
+// import 'core-js/es6';
+// import 'core-js/es7/reflect';
+// import { AppServerModuleNgFactory } from '../dist/src/app/app-server.module.ngfactory';
 
 require('dotenv').config();
 
@@ -27,13 +31,18 @@ class App {
   }
 
   private mountRoutes (): void {
+    const DIST_DIR = path.join(__dirname, '..', 'dist', 'nate-personal-ng6');
+    const template = fs.readFileSync(path.join(DIST_DIR, 'index.html')).toString();
+    // this.app.engine('html', (_, options, callback) => {
+    //   const newOptions = { document: template, url: options.req.url };
 
-    // const router = express.Router();
-    const ng_dist = express.static(path.join(__dirname, '../dist/nate-personal-ng6'));
-    console.log(path.join(__dirname, '../dist/nate-personal-ng6'));
+    //   renderModuleFactory(AppServerModuleNgFactory, newOptions)
+    //     .then(html => callback(null, html));
+    // });
+    const ng_dist = express.static(DIST_DIR);
+    this.app.set('views', 'src');
+    this.app.set('view engine', 'html');
     this.app.use(ng_dist);
-    // this.app.use('/leetcode', express.static(path.join(__dirname, 'leetcode')));
-    // this.app.use('/resume', express.static(path.join(__dirname, 'resume/dist')));
 
     this.app.post('/api/sendEmail', (req, res, next) => {
 
@@ -65,9 +74,14 @@ class App {
       sgMail.send(msg);
       res.status(200).json({success: true, message: 'Successfully sent the message!'});
     });
-    this.app.use(['/'], function(req, res, next) {
-      // Just send the index.html for other files to support HTML5Mode
-      res.sendFile('/index.html', { root: path.join(__dirname, '../dist/nate-personal-ng6') });
+    // this.app.use(['/'], function(req, res, next) {
+    //   // Just send the index.html for other files to support HTML5Mode
+    //   res.sendFile('/index.html', { root: DIST_DIR });
+    // });
+
+    this.app.get('*.*', ng_dist);
+    this.app.get('*', (req, res) => {
+      res.render('index', { req });
     });
   }
 }
