@@ -18,7 +18,8 @@ export class HomeComponent implements OnInit, AfterViewInit  {
     const first_options = {
       strings: [
         'am a <i>Full Stack Developer</i>.^1000',
-        'love <i>Typescript^1000, Angular^1000, and Nodejs</i>.^1000',
+        'love <i>Typescript^500, Angular^500, and Nodejs</i>.^500',
+        'and also Ruby^500, Python^500, and Ruby on Rails.^500',
         'am also an experienced drummer, and a scratch DJ'],
       typeSpeed: 50,
       loop: true,
@@ -31,7 +32,7 @@ export class HomeComponent implements OnInit, AfterViewInit  {
     const second_options = {
       strings: [
         'left buttons^1000 to check my social profiles^500 and my works.^500',
-        'and menu above to see my solutions^1000 for Leetcode problems^1000',
+        'and menu above to see my solutions^500 for Leetcode problems',
         'articles^1000, and contact information.^1000'],
       typeSpeed: 50,
       loop: true,
